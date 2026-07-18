@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Editorial Claro — warm ivory paper, ink, and bronze */
+  --color-paper: #F4F0E8;        /* main background */
+  --color-cream: #FBF9F4;        /* elevated cards */
+  --color-sand: #EDE6D8;         /* subtle panels */
+  --color-line: #E1D8C7;         /* hairline borders */
+  --color-line-strong: #D2C6AF;
+
+  --color-ink: #1B1712;          /* primary text / near black */
+  --color-ink-soft: #6E6558;     /* secondary text */
+  --color-ink-faint: #9A9082;    /* tertiary / meta */
+
+  --color-gold: #A9814B;         /* bronze accent */
+  --color-gold-deep: #856236;
+  --color-gold-soft: #C6A876;
+
+  --color-night: #17130C;        /* dark contrast sections */
+  --color-night-2: #221C13;
+  --color-night-line: #3A3122;
+  --color-on-night: #EBE4D6;
+  --color-on-night-soft: #A79C87;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    background-image:
+      radial-gradient(ellipse 60% 40% at 12% 0%, rgba(169, 129, 75, 0.06), transparent 60%),
+      radial-gradient(ellipse 55% 40% at 92% 30%, rgba(169, 129, 75, 0.05), transparent 62%),
+      radial-gradient(ellipse 70% 45% at 50% 100%, rgba(169, 129, 75, 0.04), transparent 68%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-gold-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Editorial eyebrow label */
+  .eyebrow {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.65rem;
+    color: var(--color-gold);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 0 rgba(169, 129, 75, 0);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+  }
+  .gold-glow:hover {
+    box-shadow: 0 14px 40px -18px rgba(169, 129, 75, 0.55);
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #856236 0%, #C6A876 50%, #856236 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .logo-chip {
+    background: linear-gradient(135deg, #FDFBF7 0%, #F3EEE4 100%);
+    border-radius: 6px;
+    box-shadow: 0 2px 12px -6px rgba(27, 23, 18, 0.25);
+  }
+
+  /* Hairline top-rule used to open editorial sections */
+  .rule-top {
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* Card surface on paper */
+  .card-paper {
+    background: var(--color-cream);
+    border: 1px solid var(--color-line);
+    transition: box-shadow 0.4s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+  .card-paper:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: 0 24px 60px -30px rgba(27, 23, 18, 0.28);
+  }
+
+  /* Frosted panel over the dark hero */
+  .glass-night {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: var(--color-paper); }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--color-line-strong); border-radius: 4px; }
+
+  /* Range input styled for the bronze theme */
+  .range-gold {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    background: var(--color-line-strong);
+    border-radius: 2px;
+    outline: none;
+  }
+  .range-gold::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    border: 3px solid var(--color-cream);
+    box-shadow: 0 2px 10px -2px rgba(169, 129, 75, 0.6);
+    cursor: pointer;
+  }
+  .range-gold::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    border: 3px solid var(--color-cream);
+    cursor: pointer;
+  }
+}
